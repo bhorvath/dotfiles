@@ -1,0 +1,207 @@
+set nocompatible              " be iMproved, required
+filetype off                   " required!
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required! 
+Plugin 'VundleVim/Vundle.vim'
+
+" Multiple yanks
+"Plugin 'vim-scripts/YankRing.vim'
+" Add comments
+Plugin 'tpope/vim-commentary'
+" Surround text with bracket etc
+Plugin 'tpope/vim-surround'
+
+" Tag managment
+Plugin 'ludovicchabant/vim-gutentags'
+" Class outline viewer
+Plugin 'majutsushi/tagbar'
+
+" Syntax checking
+Plugin 'scrooloose/syntastic'
+
+" Add snippets (Handy!)
+Plugin 'tomtom/tlib_vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+
+" Completion
+"Plugin 'Shougo/neosnippet'
+Plugin 'roxma/nvim-yarp'
+Plugin 'roxma/vim-hug-neovim-rpc'
+Plugin 'Shougo/deoplete.nvim'
+
+" Auto closing of brackets, quotes etc
+Plugin 'Raimondi/delimitMate'
+" Add 'end' at the end of blocks
+Plugin 'tpope/vim-endwise'
+" Different coloured parathneses per block
+Plugin 'kien/rainbow_parentheses.vim'
+
+" Fuzzy file search
+Plugin 'ctrlpvim/ctrlp.vim'
+" File manager
+Plugin 'scrooloose/nerdtree'
+
+" Appearance
+Plugin 'vim-airline/vim-airline'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'vim-airline/vim-airline-themes'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+
+filetype plugin indent on
+syntax on
+
+" Show line numbers
+set number
+" Default to 2 space tab width
+set ts=2 sw=2 expandtab
+" Set spelling language, but turn off spelling by default
+set spell spelllang=en
+set nospell
+" Enable incremental search, case-insensitive unless caps are used
+set incsearch
+set ignorecase
+set smartcase
+" Highlight searches
+:set hlsearch
+
+" Use a single swap directory
+set directory^=~/.vim/swp/
+" Persistent undo dir
+try
+	set undodir=~/.vim/undo
+	set undolevels=1000
+	set undofile
+endtry
+
+" Don't overwrite primary buffer on yank, use clipboard
+set clipboard=unnamed
+" F6 to paste
+set pastetoggle=<F6>
+
+" Enable the use of the mouse.
+set mouse=a
+set ttymouse=xterm2
+" The mouse to paste unformatted block of code
+noremap <MouseMiddle> <esc>"*p
+" Auto-copy on mouse selection
+" noremap <LeftRelease> "+y<LeftRelease>
+
+" GUI options
+set guioptions-=T
+
+" Set some lang-specific format options
+autocmd BufNewFile,BufRead *.pill nested set filetype=ruby
+autocmd BufNewFile,BufRead Guardfile nested set filetype=ruby
+autocmd Filetype ruby setlocal ts=2 sts=2 sw=2 expandtab
+autocmd Filetype html setlocal ts=2 sts=2 sw=2 expandtab
+autocmd Filetype yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" Remember last line
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" Allow saving of files as sudo when you forgot to start vim using sudo.
+command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+command WQ :execute ':silent w !sudo tee % > /dev/null' | :quit!
+
+" Set leader to ,
+let mapleader = ","
+" Show the command when using leaders
+set showcmd
+set timeoutlen=2000
+" Save with ,s
+noremap <Leader>s :update<CR>
+" Close buffer with ,d
+noremap <Leader>d :bd<CR>
+" Clear search with ,/
+nmap <silent> ,/ :nohlsearch<CR>
+
+" Show some context when scrolling past bottom of screen
+set scrolloff=3
+
+" Buffer shortcuts
+map <F1> :bd<CR>
+map <F2> :bprevious<CR>
+map <F3> :bnext<CR>
+" Allow switching between unwritten buffers
+set hidden
+" Confirm if quiting and there are unwritten buffers
+set confirm
+
+" Format file
+map <F7> mzgg=G`z
+
+" Comments
+map <C-_> :Commentary<CR>
+
+" Use pretty colours
+set background=dark
+set term=xterm-256color
+"let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+colorscheme solarized
+
+" Airline
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'solarized'
+let g:airline#extensions#tabline#enabled = 1
+
+" Rainbow Parenthesis always on
+au VimEnter * nested RainbowParenthesesToggleAll
+
+" delimitMate settings
+let delimitMate_balance_matchpairs = 1
+let delimitMate_expand_space = 1
+let delimitMate_expand_cr = 1
+" Shortcut to jump
+imap <C-L> <Plug>delimitMateS-Tab
+
+" snipMate settings
+" imap <C-J> <Plug>snipMateNextOrTrigger
+" smap <C-J> <Plug>snipMateNextOrTrigger
+" imap <C-S-J> <Plug>snipMateBack
+" smap <C-S-J> <Plug>snipMateBack
+
+" Tags
+let g:gutentags_enabled = 1
+" let g:gutentags_trace = 1
+" Read tags for gems as well
+set tags+=gems.tags
+" Tagbar shortcut
+nmap <F8> :TagbarToggle<CR>
+
+" Syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_check_on_open=1
+let g:syntastic_auto_jump=1
+let g:syntastic_auto_loc_list=1
+
+" NERDtree settings
+map <F4> :NERDTreeToggle<CR>
+" Open NERDtree is vim starts with no file open
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" Close NERDtree if it's the only thing left open
+autocmd bufenter * if (winnr("$") == 0 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+let g:NERDTreeMouseMode = 2
+let g:NERDTreeQuitOnOpen = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+" CtrlP mappings
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlPMixed'
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+let g:deoplete#disable_auto_complete = 1
+ " inoremap <expr> <C-K>  deoplete#mappings#manual_complete()
