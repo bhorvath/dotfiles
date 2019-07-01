@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dotfiles_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-files="bashrc bash_profile vimrc tmux.conf dir_colors"
+files="bashrc bash_profile vimrc tmux.conf dir_colors gitconfig"
 backup_dir=$dotfiles_dir/dotfiles_bak
 dependencies='tmux vim curl'
 

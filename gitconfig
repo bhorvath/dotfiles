@@ -1,0 +1,7 @@
+[user]
+  name = Bator Horvath
+  email = bhorvath@noojee.com.au
+[core]
+  editor = vim
+[push]
+  default = simple
