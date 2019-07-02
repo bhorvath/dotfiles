@@ -2,6 +2,24 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+function __prompt_command()
+{
+  exit_status="$?"
+  PS1=""
+
+  # Show history line number and set colour based on exit code of last command
+  if [ $exit_status -eq 0 ]; then PS1+="$green"; else PS1+="$red"; fi
+  PS1+="\[\!\]$nc "
+
+  # Show chroot name if in a chroot
+  PS1+="${debian_chroot:+($debian_chroot)}"
+
+  PS1+="$yellow\u$nc@$yellow\h$nc$remote_term:$purple\w$nc$green$(__git_ps1 " (%s)")$nc "
+
+  # Show $ or # for root
+  PS1+="\$ "
+}
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -19,6 +37,9 @@ shopt -s histappend
 HISTSIZE=100000
 HISTFILESIZE=100000
 
+# Ctrl+D must be pressed twice to exit
+export IGNOREEOF=1
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -30,67 +51,18 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
+nc="\[\033[0m\]" # No colour
+red="\[\033[0;31m\]"
+green="\[\033[0;32m\]"
+orange="\[\033[1;31m\]"
+yellow="\[\033[0;33m\]"
+purple="\[\033[1;35m\]"
+if [ "$SSH_CONNECTION" != "" ]; then remote_term="$orange[R]$nc"; else remote_term=""; fi
 
-[[ $TERM == "screen" ]] && export -p TERM="screen-256color"
-[[ $TERM == "xterm" ]] && export -p TERM="xterm-256color"
+# Show a marker if the git repo is dirty
+GIT_PS1_SHOWDIRTYSTATE=1
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    screen) color_prompt=yes;;
-    screen-256color) color_prompt=yes;;
-    xterm-color) color_prompt=yes;;
-    xterm-256color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-force_color_prompt=no
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-  # We have color support; assume it's compliant with Ecma-48
-  # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-  # a case would tend to support setf rather than setaf.)
-  color_prompt=yes
-    else
-  color_prompt=
-    fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-  if [ "`whoami`" = "root" ] ; then
-    bold_user_prompt="01"
-  else
-    bold_user_prompt="00"
-  fi
-  if [ `type -t __git_ps1` ]; then
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 "(%s)")\$ '
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[${bold_user_prompt};38;5;173m\]\u\[\033[00;37m\]@\[\033[38;5;221m\]\h\[\033[37m\]:\[\033[38;5;167m\]\w\[\033[38;5;107m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
-  else
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[${bold_user_prompt};38;5;173m\]\u\[\033[00;37m\]@\[\033[38;5;221m\]\h\[\033[37m\]:\[\033[38;5;167m\]\w\[\033[00m\]\$ '
-  fi
-else
-  if [ `type -t __git_ps1` ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 "(%s)")\$ '
-  else
-      PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-  fi
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+PROMPT_COMMAND=__prompt_command
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -135,6 +107,7 @@ fi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
+# Only start tmux if not an ssh connection
 if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" == "" ]; then
   exec tmux
 fi
