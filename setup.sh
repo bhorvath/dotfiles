@@ -41,7 +41,7 @@ function _parse_options()
 
 dotfiles_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 dotfiles="bashrc bash_profile vimrc tmux.conf dir_colors gitconfig"
-dependencies='tmux vim curl pkg-config'
+dependencies='tmux vim curl autoconf pkg-config'
 backup_dir=$dotfiles_dir/dotfiles_bak
 vundle_dir=~/.vim/bundle/Vundle.vim
 install_rvm=true
@@ -80,15 +80,17 @@ done
 mkdir -pv ~/.vim/undo ~/.vim/swp
 
 # ctags
-if [ ! -f /usr/local/bin/ctags ];then
+if [ ! -f "/usr/local/bin/ctags" ];then
   echo -e "${bold}Installing universal-ctags...${normal}"
-  git clone https://github.com/universal-ctags/ctags.git $dotfiles_dir/ctags
-  cd $dotfiles_dir/ctags
+  ctags_dir=$dotfiles_dir/ctags
+  git clone https://github.com/universal-ctags/ctags.git $ctags_dir
+  cd $ctags_dir
+  pwd
   ./autogen.sh
   ./configure
   make
   sudo make install
-  rm -Rf $dotfiles_dir/ctags
+  rm -Rf $ctags_dir
 fi
 
 # RVM
