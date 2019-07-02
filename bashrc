@@ -135,4 +135,6 @@ fi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-[[ -z "$TMUX" ]] && exec tmux
+if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" == "" ]; then
+  exec tmux
+fi
