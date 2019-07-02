@@ -41,7 +41,7 @@ function _parse_options()
 
 dotfiles_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 dotfiles="bashrc bash_profile vimrc tmux.conf dir_colors gitconfig"
-dependencies='tmux vim curl'
+dependencies='tmux vim curl pkg-config'
 backup_dir=$dotfiles_dir/dotfiles_bak
 vundle_dir=~/.vim/bundle/Vundle.vim
 install_rvm=true
@@ -53,7 +53,7 @@ normal=`tput sgr0`
 _parse_options $@
 
 echo -e "${bold}Installing dependencies...${normal}"
-sudo apt-get install $dependencies
+sudo apt-get -y install $dependencies
 
 # Vundle
 if [ "$install_vundle" = true ]; then
@@ -78,6 +78,18 @@ for file in $dotfiles; do
 done
 
 mkdir -pv ~/.vim/undo ~/.vim/swp
+
+# ctags
+if [ ! -f /usr/local/bin/ctags ];then
+  echo -e "${bold}Installing universal-ctags...${normal}"
+  git clone https://github.com/universal-ctags/ctags.git $dotfiles_dir/ctags
+  cd $dotfiles_dir/ctags
+  ./autogen.sh
+  ./configure
+  make
+  sudo make install
+  rm -Rf $dotfiles_dir/ctags
+fi
 
 # RVM
 if [ "$install_rvm" = true ]; then
