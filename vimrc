@@ -28,10 +28,9 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 
 " Completion
-"Plugin 'Shougo/neosnippet'
-Plugin 'roxma/nvim-yarp'
-Plugin 'roxma/vim-hug-neovim-rpc'
-Plugin 'Shougo/deoplete.nvim'
+"Plugin 'roxma/nvim-yarp'
+"Plugin 'roxma/vim-hug-neovim-rpc'
+"Plugin 'Shougo/deoplete.nvim'
 
 " Auto closing of brackets, quotes etc
 Plugin 'Raimondi/delimitMate'
@@ -200,8 +199,8 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMixed'
 
 " Deoplete
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 " inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "<Tab>"
 " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-let g:deoplete#disable_auto_complete = 1
+"let g:deoplete#disable_auto_complete = 1
  " inoremap <expr> <C-K>  deoplete#mappings#manual_complete()
