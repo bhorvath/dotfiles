@@ -4,8 +4,8 @@ function _usage()
 {
   echo "Usage: setup.sh [OPTION]..."
   echo "Options:"
-  echo "    -r, --no-rvm     Skip installing RVM"
-  echo "    -h, --help       Show this message"
+  echo "    -r, --install-rvm     Install RVM"
+  echo "    -h, --help            Show this message"
 }
 
 function _unrecognised_option()
@@ -20,7 +20,7 @@ function _parse_options()
   for arg in "$@"; do
     shift
     case "$arg" in
-      "--no-rvm") set -- "$@" "-r" ;;
+      "--install-rvm") set -- "$@" "-r" ;;
       "--help") set -- "$@" "-h" ;;
       "--"*) _unrecognised_option {$arg}; exit 2;;
       *) set -- "$@" "$arg" ;;
@@ -32,7 +32,7 @@ function _parse_options()
   while getopts "rh" opt
   do
     case "$opt" in
-      "r") install_rvm=false ;;
+      "r") install_rvm=true ;;
       "h") _usage; exit 0 ;;
     esac
   done
@@ -44,7 +44,7 @@ dotfiles="bashrc bash_profile vimrc tmux.conf dir_colors gitconfig"
 dependencies='tmux vim curl autoconf pkg-config'
 backup_dir=$dotfiles_dir/dotfiles_bak
 vundle_dir=~/.vim/bundle/Vundle.vim
-install_rvm=true
+install_rvm=false
 if [ ! -d $vundle_dir ]; then install_vundle=true; else install_vundle=false; fi
 if [ ! -d $backup_dir ]; then create_backup=true; else create_backup=false; fi
 bold=`tput setaf 7`
