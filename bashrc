@@ -8,8 +8,8 @@ function __prompt_command()
   PS1=""
 
   # Show history line number and set colour based on exit code of last command
-  if [ $exit_status -eq 0 ]; then PS1+="$green"; else PS1+="$red"; fi
-  PS1+="\[\!\]$nc "
+   if [ $exit_status -eq 0 ]; then PS1+="$green"; else PS1+="$red"; fi
+   PS1+="\!$nc "
 
   # Show chroot name if in a chroot
   PS1+="${debian_chroot:+($debian_chroot)}"
