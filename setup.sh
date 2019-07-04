@@ -40,7 +40,7 @@ function _parse_options()
 }
 
 dotfiles_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-dotfiles="bashrc bash_profile vimrc tmux.conf dir_colors gitconfig docker_aliases"
+dotfiles="bashrc bash_profile vimrc tmux.conf dir_colors gitconfig bash_aliases docker_aliases"
 dependencies='tmux vim curl autoconf pkg-config'
 backup_dir=$dotfiles_dir/dotfiles_bak
 vundle_dir=~/.vim/bundle/Vundle.vim
