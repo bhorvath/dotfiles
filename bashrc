@@ -37,9 +37,6 @@ shopt -s histappend
 HISTSIZE=100000
 HISTFILESIZE=100000
 
-# Ctrl+D must be pressed twice to exit
-export IGNOREEOF=1
-
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
