@@ -2,3 +2,5 @@
 source ~/.bashrc
 
 eval `dircolors $HOME/.dir_colors`
+
+export EDITOR=vim
