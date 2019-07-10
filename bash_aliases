@@ -13,5 +13,10 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# Remote operations
 alias s='ssh'
 alias r='rsync -avP'
+
+# Disk space
+alias fs='df -h'
+alias us='du -h --max-depth=1'
