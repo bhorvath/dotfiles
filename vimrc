@@ -14,7 +14,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 
 " Tag managment
-Plugin 'ludovicchabant/vim-gutentags'
+" Plugin 'ludovicchabant/vim-gutentags'
 " Class outline viewer
 Plugin 'majutsushi/tagbar'
 
@@ -167,7 +167,7 @@ imap <C-L> <Plug>delimitMateS-Tab
 " smap <C-S-J> <Plug>snipMateBack
 
 " Tags
-let g:gutentags_enabled = 1
+" let g:gutentags_enabled = 1
 " let g:gutentags_trace = 1
 " Read tags for gems as well
 set tags+=gems.tags
