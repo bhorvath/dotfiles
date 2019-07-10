@@ -5,3 +5,18 @@
   editor = vim
 [push]
   default = simple
+[alias]
+s = status
+l = log
+a = add
+aa = add -A
+c = commit
+cm = commit -m
+acm = !git add -A && git commit -m
+ca = commit --amend
+cam = commit --amend -m
+acam = !git add -A && git commit --amend -m
+d = diff
+r = reset HEAD
+p = pull
+f = fetch

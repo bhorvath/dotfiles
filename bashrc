@@ -75,6 +75,9 @@ if [ -f ~/.docker_aliases ]; then
   . ~/.docker_aliases
 fi
 
+# Git alias
+alias g='git'
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
