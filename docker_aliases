@@ -8,5 +8,5 @@ alias dkt='docker top'
 
 function dke()
 {
-  docker exec -it $1 /bin/bash
+  docker exec -it $1 '/bin/bash' &>/dev/null || docker exec -it $1 /bin/sh
 }
