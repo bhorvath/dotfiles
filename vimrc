@@ -3,6 +3,13 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+" Function to source only if file exists
+function! SourceIfExists(file)
+  if filereadable(expand(a:file))
+    exe 'source' a:file
+  endif
+endfunction
+
 " let Vundle manage Vundle, required! 
 Plugin 'VundleVim/Vundle.vim'
 
@@ -12,11 +19,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-commentary'
 " Surround text with bracket etc
 Plugin 'tpope/vim-surround'
-
-" Tag managment
-" Plugin 'ludovicchabant/vim-gutentags'
-" Class outline viewer
-Plugin 'majutsushi/tagbar'
 
 " Syntax checking
 Plugin 'scrooloose/syntastic'
@@ -48,6 +50,9 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-airline/vim-airline-themes'
+
+" Add additional vundle configs to this file
+call SourceIfExists('~/.vimrc.vundle')
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -167,7 +172,7 @@ imap <C-L> <Plug>delimitMateS-Tab
 " smap <C-S-J> <Plug>snipMateBack
 
 " Tags
-" let g:gutentags_enabled = 1
+let g:gutentags_enabled = 1
 " let g:gutentags_trace = 1
 " Read tags for gems as well
 set tags+=gems.tags

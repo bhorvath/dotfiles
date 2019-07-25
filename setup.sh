@@ -4,7 +4,7 @@ function _usage()
 {
   echo "Usage: setup.sh [OPTION]..."
   echo "Options:"
-  echo "    -r, --install-rvm     Install RVM"
+  echo "    -d, --development     Setup for development"
   echo "    -h, --help            Show this message"
 }
 
@@ -20,7 +20,7 @@ function _parse_options()
   for arg in "$@"; do
     shift
     case "$arg" in
-      "--install-rvm") set -- "$@" "-r" ;;
+      "--development") set -- "$@" "-d" ;;
       "--help") set -- "$@" "-h" ;;
       "--"*) _unrecognised_option {$arg}; exit 2;;
       *) set -- "$@" "$arg" ;;
@@ -29,10 +29,10 @@ function _parse_options()
 
   # Parse short options
   OPTIND=1
-  while getopts "rh" opt
+  while getopts "dh" opt
   do
     case "$opt" in
-      "r") install_rvm=true ;;
+      "d") development=true ;;
       "h") _usage; exit 0 ;;
     esac
   done
@@ -44,7 +44,7 @@ dotfiles="bashrc bash_profile vimrc tmux.conf dir_colors gitconfig bash_aliases 
 dependencies='tmux vim curl autoconf pkg-config'
 backup_dir=$dotfiles_dir/dotfiles_bak
 vundle_dir=~/.vim/bundle/Vundle.vim
-install_rvm=false
+development=false
 if [ ! -d $vundle_dir ]; then install_vundle=true; else install_vundle=false; fi
 if [ ! -d $backup_dir ]; then create_backup=true; else create_backup=false; fi
 bold=`tput setaf 7`
@@ -79,25 +79,28 @@ done
 
 mkdir -pv ~/.vim/undo ~/.vim/swp
 
-# ctags
-# if [ ! -f "/usr/local/bin/ctags" ];then
-#   echo -e "${bold}Installing universal-ctags...${normal}"
-#   ctags_dir=$dotfiles_dir/ctags
-#   git clone https://github.com/universal-ctags/ctags.git $ctags_dir
-#   cd $ctags_dir
-#   pwd
-#   ./autogen.sh
-#   ./configure
-#   make
-#   sudo make install
-#   rm -Rf $ctags_dir
-# fi
-
-# RVM
-if [ "$install_rvm" = true ]; then
+if [ "$development" = true ]; then
+  # Install RVM
   echo -e "${bold}Installing RVM...${normal}"
   gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
   \curl -L https://get.rvm.io | bash -s stable
+
+  # Install ctags
+  if [ ! -f "/usr/local/bin/ctags" ];then
+    echo -e "${bold}Installing universal-ctags...${normal}"
+    ctags_dir=$dotfiles_dir/ctags
+    git clone https://github.com/universal-ctags/ctags.git $ctags_dir
+    cd $ctags_dir
+    pwd
+    ./autogen.sh
+    ./configure
+    make
+    sudo make install
+    rm -Rf $ctags_dir
+  fi
+
+  # Add tags to vim
+  cat $dotfiles_dir/vimrc.tags >> ~/.vimrc.vundle
 fi
 
 # Post-setup messages
@@ -109,4 +112,7 @@ else
 fi
 if [ "$install_vundle" = true ]; then
   echo -e "${bold}To finish setting up Vundle, open vim and run :PluginInstall${normal}"
+fi
+if [[ "$development" = true && "$install_vundle" = false ]]; then
+  echo -e "${bold}If this is a new development environment, open vim and run :PluginInstall${normal}"
 fi

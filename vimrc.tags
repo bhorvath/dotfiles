@@ -1,0 +1,4 @@
+" Tag managment
+Plugin 'ludovicchabant/vim-gutentags'
+" Class outline viewer
+Plugin 'majutsushi/tagbar'
