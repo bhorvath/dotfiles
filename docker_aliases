@@ -5,8 +5,28 @@ alias dkl='docker logs -f'
 alias dkr='docker run -it --rm'
 alias dks='docker stats'
 alias dkt='docker top'
+alias dkv='docker volume ls'
 
 function dke()
 {
   docker exec -it $1 '/bin/bash' &>/dev/null || docker exec -it $1 /bin/sh
+}
+
+function dkd()
+{
+  echo "About to stop and remove the following Docker containers:"
+  for i in $@
+  do
+    echo $i
+  done
+  read -p "Are you sure? [y/N] " response
+  response=${response,,} # to lowecase
+  if [[ "$response" =~ ^(yes|y)$ ]]
+  then
+    for c in $@
+    do
+      docker stop $c
+      docker rm $c
+    done
+  fi
 }
