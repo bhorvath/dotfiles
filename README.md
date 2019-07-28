@@ -12,5 +12,5 @@ source ~/.bashrc
 ## Arguments
 You can pass arguments to `setup.sh` to modify what is installed.
 
-`--install-rvm` to install RVM.
-
+`--development`to install dependencies for development (RVM, ctags, etc).
+ --help to display help.
