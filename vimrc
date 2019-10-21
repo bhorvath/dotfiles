@@ -121,7 +121,7 @@ set timeoutlen=2000
 " Save with ,s
 noremap <Leader>s :update<CR>
 " Close buffer with ,d
-noremap <Leader>d :bd<CR>
+" noremap <Leader>d :bd<CR>
 " Clear search with ,/
 nmap <silent> ,/ :nohlsearch<CR>
 
@@ -170,14 +170,6 @@ imap <C-L> <Plug>delimitMateS-Tab
 " smap <C-J> <Plug>snipMateNextOrTrigger
 " imap <C-S-J> <Plug>snipMateBack
 " smap <C-S-J> <Plug>snipMateBack
-
-" Tags
-let g:gutentags_enabled = 1
-" let g:gutentags_trace = 1
-" Read tags for gems as well
-set tags+=gems.tags
-" Tagbar shortcut
-nmap <F8> :TagbarToggle<CR>
 
 " Syntastic settings
 set statusline+=%#warningmsg#
