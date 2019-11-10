@@ -1,7 +1,7 @@
 alias dk='docker'
 alias dkp="docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Status}}'"
 alias dki='docker images'
-alias dkl='docker logs -f'
+alias dkl='docker logs -f --tail 10'
 alias dkr='docker run -it --rm'
 alias dks='docker stats'
 alias dkt='docker top'
