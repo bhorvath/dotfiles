@@ -87,6 +87,6 @@ fi
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # Only start tmux if not an ssh connection
-if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" == "" ]; then
+if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" == "" ] && [ "$VISUAL_STUDIO" != true ]; then
   exec tmux
 fi
