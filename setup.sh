@@ -4,6 +4,8 @@ function _usage()
 {
   echo "Usage: setup.sh [OPTION]..."
   echo "Options:"
+  echo "    -z, --zsh             Use zsh"
+  echo "    -b, --bash            Use bash"
   echo "    -d, --development     Setup for development"
   echo "    -h, --help            Show this message"
 }
@@ -20,6 +22,8 @@ function _parse_options()
   for arg in "$@"; do
     shift
     case "$arg" in
+      "--zsh") set -- "$@" "-z" ;;
+      "--bash") set -- "$@" "-b" ;;
       "--development") set -- "$@" "-d" ;;
       "--help") set -- "$@" "-h" ;;
       "--"*) _unrecognised_option {$arg}; exit 2;;
@@ -29,9 +33,11 @@ function _parse_options()
 
   # Parse short options
   OPTIND=1
-  while getopts "dh" opt
+  while getopts "zbdh" opt
   do
     case "$opt" in
+      "z") zsh=true ;;
+      "b") bash=true ;;
       "d") development=true ;;
       "h") _usage; exit 0 ;;
     esac
@@ -39,21 +45,61 @@ function _parse_options()
   shift $(expr $OPTIND - 1)
 }
 
+function _find_package_manager()
+{
+  pacman=`command -v pacman`
+  if [ -n "$pacman" ]; then
+    package_manager_command="$pacman -Syu --noconfirm "
+    return
+  fi
+
+  apt=`command -v apt`
+  if [ -n "$apt" ]; then
+    package_manager_command="$apt -y install "
+    return
+  fi
+
+  echo "Package manager not found"
+  exit 1
+}
+
+zsh=false
+bash=false
+zsh_dotfiles="zshrc"
+bash_dotfiles="bashrc bash_profile"
+dotfiles="vimrc tmux.conf dir_colors gitconfig aliases docker_aliases"
 dotfiles_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-dotfiles="bashrc bash_profile vimrc tmux.conf dir_colors gitconfig bash_aliases docker_aliases"
-dependencies='tmux vim curl autoconf pkg-config'
+dependencies="tmux vim"
 backup_dir=$dotfiles_dir/dotfiles_bak
 vundle_dir=~/.vim/bundle/Vundle.vim
 development=false
+
+_find_package_manager
+
+# Only install vundle once
 if [ ! -d $vundle_dir ]; then install_vundle=true; else install_vundle=false; fi
+# Only create a backup once
 if [ ! -d $backup_dir ]; then create_backup=true; else create_backup=false; fi
-bold=`tput setaf 7`
-normal=`tput sgr0`
 
 _parse_options $@
 
+if [ "$zsh" = true ]; then
+  dotfiles+=" $zsh_dotfiles"
+fi
+
+if [ "$bash" = true ]; then
+  dotfiles+=" $bash_dotfiles"
+fi
+
+if [ "$development" = true ]; then
+  dependencies+=" curl"
+fi
+
+bold=`tput setaf 7`
+normal=`tput sgr0`
+
 echo -e "${bold}Installing dependencies...${normal}"
-sudo apt-get -y install $dependencies
+sudo $package_manager_command $dependencies
 
 # Vundle
 if [ "$install_vundle" = true ]; then
