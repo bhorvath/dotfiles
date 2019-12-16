@@ -7,6 +7,7 @@ function _usage()
   echo "    -z, --zsh             Use zsh"
   echo "    -b, --bash            Use bash"
   echo "    -d, --development     Setup for development"
+  echo "    -g, --gui             Setup for GUI"
   echo "    -h, --help            Show this message"
 }
 
@@ -25,6 +26,7 @@ function _parse_options()
       "--zsh") set -- "$@" "-z" ;;
       "--bash") set -- "$@" "-b" ;;
       "--development") set -- "$@" "-d" ;;
+      "--gui") set -- "$@" "-g" ;;
       "--help") set -- "$@" "-h" ;;
       "--"*) _unrecognised_option {$arg}; exit 2;;
       *) set -- "$@" "$arg" ;;
@@ -33,12 +35,13 @@ function _parse_options()
 
   # Parse short options
   OPTIND=1
-  while getopts "zbdh" opt
+  while getopts "zbdgh" opt
   do
     case "$opt" in
       "z") zsh=true ;;
       "b") bash=true ;;
       "d") development=true ;;
+      "g") gui=true ;;
       "h") _usage; exit 0 ;;
     esac
   done
@@ -67,6 +70,7 @@ zsh=false
 bash=false
 zsh_dotfiles="zshrc"
 bash_dotfiles="bashrc bash_profile"
+gui_dotfiles="Xresources"
 dotfiles="vimrc tmux.conf dir_colors gitconfig aliases docker_aliases"
 dotfiles_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 dependencies="tmux vim"
@@ -123,6 +127,13 @@ for file in $dotfiles; do
   ln -sfv $dotfiles_dir/$file ~/.$file
 done
 
+if [ "$gui" = true ]; then
+  for file in $gui_dotfiles; do
+    ln -sfv $dotfiles_dir/$file ~/.$file
+  done
+  xrdb ~/.Xresources
+fi
+
 mkdir -pv ~/.vim/undo ~/.vim/swp
 
 if [ "$development" = true ]; then
@@ -141,7 +152,4 @@ else
 fi
 if [ "$install_vundle" = true ]; then
   echo -e "${bold}To finish setting up Vundle, open vim and run :PluginInstall${normal}"
-fi
-if [[ "$development" = true && "$install_vundle" = false ]]; then
-  echo -e "${bold}If this is a new development environment, open vim and run :PluginInstall${normal}"
 fi
