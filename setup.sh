@@ -89,6 +89,7 @@ _parse_options $@
 
 if [ "$zsh" = true ]; then
   dotfiles+=" $zsh_dotfiles"
+  dependencies+=" zsh"
 fi
 
 if [ "$bash" = true ]; then
