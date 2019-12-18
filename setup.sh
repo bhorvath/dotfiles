@@ -106,6 +106,12 @@ normal=`tput sgr0`
 echo -e "${bold}Installing dependencies...${normal}"
 sudo $package_manager_command $dependencies
 
+if [ "$zsh" = true ]; then
+  echo -e "${bold}Installing zsh plugins...${normal}"
+  git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+  git clone https://github.com/zsh-users/zsh-history-substring-search ~/.zsh/zsh-history-substring-search
+fi
+
 # Vundle
 if [ "$install_vundle" = true ]; then
   echo -e "${bold}Installing Vundle...${normal}"
