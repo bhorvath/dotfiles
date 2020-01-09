@@ -149,6 +149,7 @@ source $HOME/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 bindkey '^[[A' history-substring-search-up # Up key
 bindkey '^[[B' history-substring-search-down # Down key
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=1'
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=10'
 
 # Go vars
 export GOPATH=$HOME/go/lib:$HOME/go/code
