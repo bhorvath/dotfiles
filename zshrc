@@ -159,6 +159,9 @@ export PATH="$PATH:$HOME/go/lib/bin"
 export PATH="$PATH:$HOME/.rvm/bin"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
+# Add user bins to PATH
+PATH=$PATH:$HOME/.local/bin
+
 # Only start tmux if not an SSH connection and not in VSCode
 if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" = "" ] && [ "$VISUAL_STUDIO" != true ]; then
   exec tmux
