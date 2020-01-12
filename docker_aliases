@@ -19,8 +19,9 @@ function dkd()
   do
     echo $i
   done
-  read -p "Are you sure? [y/N] " response
-  response=${response,,} # to lowecase
+  printf "Are you sure? [y/N] "
+  read response
+  response=$response:l # to lowecase
   if [[ "$response" =~ ^(yes|y)$ ]]
   then
     for c in $@
