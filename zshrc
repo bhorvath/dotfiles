@@ -68,6 +68,7 @@ PROMPT="[$remote_indicator%{$fg[yellow]%}%M%{$reset_color%}]$root_indicator:%{$f
 #  - shows status of git when in git repository (code adapted from https://techanic.net/2012/12/30/my_git_prompt_for_zsh.html)
 #  - shows exit status of previous command (if previous command finished with an error)
 #  - is invisible, if neither is the case
+RPROMPT='$(rprompt_string)'
 
 # Modify the colors and symbols in these variables as desired.
 GIT_PROMPT_SYMBOL="%{$fg[blue]%}±"                              # plus/minus     - clean repo
@@ -115,16 +116,16 @@ parse_git_state() {
   fi
 }
 
-git_prompt_string() {
+rprompt_string() {
   local git_where="$(parse_git_branch)"
   
+  # Print exit codes of last command (only if it failed)
+	rprompt="%{$fg[red]%} %(?..[%?])"
   # If inside a Git repository, print its branch and state
-  [ -n "$git_where" ] && echo "$GIT_PROMPT_SYMBOL$(parse_git_state)$GIT_PROMPT_PREFIX%{$fg[yellow]%}${git_where#(refs/heads/|tags/)}$GIT_PROMPT_SUFFIX"
+  [ -n "$git_where" ] && rprompt="${rprompt} $GIT_PROMPT_SYMBOL$(parse_git_state)$GIT_PROMPT_PREFIX%{$fg[yellow]%}${git_where#(refs/heads/|tags/)}$GIT_PROMPT_SUFFIX"
   
-  # If not inside the Git repo, print exit codes of last command (only if it failed)
-  [ ! -n "$git_where" ] && echo "%{$fg[red]%} %(?..[%?])"
+  echo $rprompt
 }
-
 
 
 # Color man pages
