@@ -46,15 +46,15 @@ bindkey '^[[1;5C' forward-word                                  #
 bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
 bindkey '^[[Z' undo                                             # Shift+tab undo last action
 
+# Autoload functions  
+autoload -U compinit colors zcalc
+compinit -d
+colors
+
 # Alias 
 alias g='git'
 source $HOME/.aliases
 source $HOME/.docker_aliases
-
-# Theming section  
-autoload -U compinit colors zcalc
-compinit -d
-colors
 
 # enable substitution for prompt
 setopt prompt_subst
@@ -168,3 +168,11 @@ PATH=$PATH:$HOME/.local/bin
 if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" = "" ] && [ "$VISUAL_STUDIO" != true ]; then
   exec tmux
 fi
+
+# Set up ssh-agent
+if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+  eval `ssh-agent`
+  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+fi
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+ssh-add -l > /dev/null || ssh-add
