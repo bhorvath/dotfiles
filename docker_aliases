@@ -31,3 +31,11 @@ function dkd()
     done
   fi
 }
+
+compdef _dkd_autocomplete dkd
+_dkd_autocomplete() {
+  containers=`docker container list --all --format '{{.Names}}'`
+  container_array=("${(s/ /)containers}")
+  _sep_parts container_array
+
+}
