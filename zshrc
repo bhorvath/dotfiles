@@ -154,8 +154,8 @@ HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=1'
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=10'
 
 # Go vars
-export GOPATH=$HOME/go/lib:$HOME/go/code
-export PATH="$PATH:$HOME/go/lib/bin"
+export GOPATH=$HOME/go
+export PATH="$PATH:$HOME/go/bin"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
