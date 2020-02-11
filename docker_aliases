@@ -9,7 +9,18 @@ alias dkv='docker volume ls'
 
 function dke()
 {
-  docker exec -it $1 '/bin/bash' || docker exec -it $1 /bin/sh
+  if docker exec $1 bash -c : &> /dev/null; then
+    docker exec -it $1 bash
+    return
+  fi
+
+  if docker exec $1 sh -c : &> /dev/null; then
+    docker exec -it $1 sh
+    return
+  fi
+  
+  echo "No shell found"
+  return 126
 }
 
 function dkd()
