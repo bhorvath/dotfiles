@@ -169,10 +169,13 @@ if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" = "" ] && [ "$VISUAL_STUDIO" != true 
   exec tmux
 fi
 
-# Set up ssh-agent
-if [ ! -S ~/.ssh/ssh_auth_sock ]; then
-  eval `ssh-agent`
-  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+# Set up ssh-agent on local terminals only
+if [ "$SSH_CONNECTION" = "" ]; then
+  if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+    eval `ssh-agent`
+    ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+  fi
+  export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+  ssh-add -l > /dev/null || ssh-add
 fi
-export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-ssh-add -l > /dev/null || ssh-add
+
