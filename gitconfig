@@ -22,3 +22,5 @@ p = pull
 f = fetch
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
+[pull]
+	ff = only
