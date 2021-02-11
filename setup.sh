@@ -100,6 +100,10 @@ if [ "$development" = true ]; then
   dependencies+=" curl"
 fi
 
+if [ "$gui" = true ]; then
+  dependencies+=" i3-gaps i3blocks"
+fi
+
 bold=`tput setaf 7`
 normal=`tput sgr0`
 
@@ -137,6 +141,8 @@ done
 if [ "$gui" = true ]; then
   for file in $gui_dotfiles; do
     ln -sfv $dotfiles_dir/$file ~/.$file
+    ln -sfv $dotfiles_dir/i3 ~/.config/i3
+    ln -sfv $dotfiles_dir/i3blocks ~/.config/i3blocks
   done
   xrdb ~/.Xresources
 fi
