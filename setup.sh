@@ -70,11 +70,12 @@ zsh=false
 bash=false
 zsh_dotfiles="zshrc"
 bash_dotfiles="bashrc bash_profile"
+gui_config_dirs="i3 i3blocks"
 gui_dotfiles="Xresources"
 dotfiles="vimrc tmux.conf dir_colors gitconfig aliases docker_aliases"
 dotfiles_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 dependencies="tmux vim"
-backup_dir=$dotfiles_dir/dotfiles_bak
+backup_dir=$dotfiles_dir/backup
 vundle_dir=~/.vim/bundle/Vundle.vim
 development=false
 
@@ -131,6 +132,16 @@ if [ "$create_backup" = true ]; then
       mv -v ~/.$file $backup_dir
     fi
   done
+  for file in $gui_dotfiles; do
+    if [ -f $file ]; then
+      mv -v ~/.$file $backup_dir
+    fi
+  done
+  for dir in $gui_config_dirs; do
+    if [ -d $dir ]; then
+      mv -v ~/.config/$dir $backup_dir
+    fi
+  done
 fi
 
 echo -e "${bold}Adding symlinks...${normal}"
@@ -139,10 +150,11 @@ for file in $dotfiles; do
 done
 
 if [ "$gui" = true ]; then
+  for dir in $gui_config_dirs; do
+    ln -sfv $dotfiles_dir/$dir ~/.config/$dir
+  done
   for file in $gui_dotfiles; do
     ln -sfv $dotfiles_dir/$file ~/.$file
-    ln -sfv $dotfiles_dir/i3 ~/.config/i3
-    ln -sfv $dotfiles_dir/i3blocks ~/.config/i3blocks
   done
   xrdb ~/.Xresources
 fi
