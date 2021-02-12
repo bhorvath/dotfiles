@@ -70,7 +70,7 @@ zsh=false
 bash=false
 zsh_dotfiles="zshrc"
 bash_dotfiles="bashrc bash_profile"
-gui_config_dirs="i3 i3blocks"
+gui_config_dirs="i3 i3blocks rofi"
 gui_dotfiles="Xresources"
 dotfiles="vimrc tmux.conf dir_colors gitconfig aliases docker_aliases"
 dotfiles_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -102,7 +102,7 @@ if [ "$development" = true ]; then
 fi
 
 if [ "$gui" = true ]; then
-  dependencies+=" i3-gaps i3blocks"
+  dependencies+=" i3-gaps i3blocks rofi"
 fi
 
 bold=`tput setaf 7`
