@@ -233,7 +233,7 @@ bar {
 	strip_workspace_numbers yes
 
 	# Disable moving between workspaces with scroll wheel
-	bindsym button4 no
+	bindsym button4 nop
 	bindsym button5 nop
 
   colors {
