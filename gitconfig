@@ -3,6 +3,8 @@
   email = 5924171+bhorvath@users.noreply.github.com
 [core]
   editor = vim
+[init]
+  defaultBranch = main
 [push]
   default = simple
 [alias]
