@@ -41,7 +41,7 @@ bindsym $mod+braceleft kill
 bindsym $mod+Shift+q --release exec --no-startup-id xkill
 
 # rofi
-bindsym $mod+semicolon exec --no-startup-id rofi -show combi -show-icons
+bindsym $mod+semicolon exec --no-startup-id rofi -show run
 bindsym $mod+slash exec --no-startup-id rofi -show ssh
 
 # lock screen
