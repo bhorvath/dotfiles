@@ -1,0 +1,8 @@
+alias g='git'
+
+gzb() {
+  local branches branch
+  branches=$(git branch -v --color) &&
+  branch=$(echo "$branches" | fzf +m --ansi) &&
+  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}

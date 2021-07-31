@@ -52,9 +52,9 @@ compinit -d
 colors
 
 # Alias 
-alias g='git'
 source $HOME/.aliases
 source $HOME/.docker_aliases
+source $HOME/.git_aliases
 
 # enable substitution for prompt
 setopt prompt_subst
