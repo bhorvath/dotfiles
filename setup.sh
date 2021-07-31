@@ -158,7 +158,7 @@ done
 
 if [ "$gui" = true ]; then
   for dir in $gui_config_dirs; do
-    ln -sfv $dotfiles_dir/$dir ~/.config/$dir
+    ln -sfv $dotfiles_dir/$dir ~/.config
   done
   for file in $gui_dotfiles; do
     ln -sfv $dotfiles_dir/$file ~/.$file
