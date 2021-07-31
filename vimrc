@@ -166,6 +166,7 @@ let delimitMate_expand_cr = 1
 imap <C-L> <Plug>delimitMateS-Tab
 
 " snipMate settings
+let g:snipMate = { 'snippet_version' : 1 }
 " imap <C-J> <Plug>snipMateNextOrTrigger
 " smap <C-J> <Plug>snipMateNextOrTrigger
 " imap <C-S-J> <Plug>snipMateBack
