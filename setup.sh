@@ -105,7 +105,7 @@ if [ "$development" = true ]; then
 fi
 
 if [ "$gui" = true ]; then
-  dependencies+=" i3-gaps i3blocks rofi"
+  dependencies+=" i3 i3blocks rofi rxvt-unicode xsel solaar mousepad pcmanfm ddcutil"
 fi
 
 if [ "$laptop" = true ]; then
