@@ -163,7 +163,6 @@ mode "$mode_config" {
     bindsym e mode "$mode_environment"
     bindsym m mode "$mode_mouse"
     bindsym p mode "$mode_power"
-    bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
@@ -172,7 +171,6 @@ mode "$mode_environment" {
     bindsym l mode "$mode_location"
     bindsym t mode "$mode_tod"
     bindsym m mode "$mode_mouse"
-    bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
@@ -182,7 +180,6 @@ mode "$mode_location" {
     bindsym h exec --no-startup-id "~/.dotfiles/i3/scripts/env_home.sh" mode "default"
     bindsym p exec --no-startup-id "~/.dotfiles/i3/scripts/env_portable.sh" mode "default"
     bindsym a exec --no-startup-id "urxvt"
-    bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
@@ -190,7 +187,6 @@ set $mode_tod (d)ay, (n)ight
 mode "$mode_tod" {
     bindsym d exec --no-startup-id "~/.dotfiles/i3/scripts/tod.sh day" mode "default"
     bindsym n exec --no-startup-id "~/.dotfiles/i3/scripts/tod.sh night" mode "default"
-    bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
@@ -198,7 +194,6 @@ set $mode_mouse (l)eft, (r)ight
 mode "$mode_mouse" {
     bindsym l exec --no-startup-id "~/.dotfiles/i3/scripts/mouse.sh left" mode "default"
     bindsym r exec --no-startup-id "~/.dotfiles/i3/scripts/mouse.sh right" mode "default"
-    bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
@@ -206,10 +201,34 @@ set $mode_power (l)ock, (s)uspend, (r)eboot, (Shift+s)hutdown, (e)xit
 mode "$mode_power" {
     bindsym l exec --no-startup-id "$lock_cmd" mode "default"
     bindsym s exec --no-startup-id "$lock_cmd & systemctl suspend" mode "default"
-    bindsym r exec --no-startup-id "systemctl reboot" mode "default"
-    bindsym Shift+s exec --no-startup-id "systemctl poweroff" mode "default"
-    bindsym e exec --no-startup-id "i3-msg exit" mode "default"
+    bindsym r mode "$mode_confirm_reboot"
+    bindsym Shift+s mode "$mode_confirm_shutdown"
+    bindsym e mode "$mode_confirm_exit"
     bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_confirm_reboot Are you sure you want to reboot? (Y/n)
+mode "$mode_confirm_reboot" {
+    bindsym y exec --no-startup-id "systemctl reboot" mode "default"
+    bindsym Return exec --no-startup-id "systemctl reboot" mode "default"
+    bindsym n mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_confirm_shutdown Are you sure you want to shutdown? (Y/n)
+mode "$mode_confirm_shutdown" {
+    bindsym y exec --no-startup-id "systemctl poweroff" mode "default"
+    bindsym Return exec --no-startup-id "systemctl poweroff" mode "default"
+    bindsym n mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_confirm_exit Are you sure you want to exit? (Y/n)
+mode "$mode_confirm_exit" {
+    bindsym y exec --no-startup-id "i3-msg exit" mode "default"
+    bindsym Return exec --no-startup-id "i3-msg exit" mode "default"
+    bindsym n mode "default"
     bindsym Escape mode "default"
 }
 ##########################################################################################
