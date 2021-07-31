@@ -43,7 +43,8 @@ bindsym $mod+semicolon exec --no-startup-id rofi -show run
 bindsym $mod+slash exec --no-startup-id rofi -show window
 
 # lock screen
-bindsym $mod+Ctrl+l exec i3lock -B 10 -f --indicator -k --timecolor=CCCCCC --datecolor=CCCCCC
+set $lock_cmd i3lock -c 002b36 -i ~/.dotfiles/i3/lock.png -tef
+bindsym $mod+Ctrl+l exec $lock_cmd
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -158,7 +159,7 @@ bindsym $mod+Ctrl+z exec "i3-nagbar -t warning -m 'You pressed the exit shortcut
 bindsym $mod+backslash mode "$mode_config"
 set $mode_config (l)ock, (e)environment, (p)ower
 mode "$mode_config" {
-    bindsym l exec --no-startup-id "i3lock -c 002b36" mode "default"
+    bindsym l exec --no-startup-id "$lock_cmd" mode "default"
     bindsym e mode "$mode_environment"
     bindsym m mode "$mode_mouse"
     bindsym p mode "$mode_power"
@@ -203,8 +204,8 @@ mode "$mode_mouse" {
 
 set $mode_power (l)ock, (s)uspend, (r)eboot, (Shift+s)hutdown, (e)xit
 mode "$mode_power" {
-    bindsym l exec --no-startup-id "i3lock -c 002b36" mode "default"
-    bindsym s exec --no-startup-id "i3lock -c 002b36 & systemctl suspend" mode "default"
+    bindsym l exec --no-startup-id "$lock_cmd" mode "default"
+    bindsym s exec --no-startup-id "$lock_cmd & systemctl suspend" mode "default"
     bindsym r exec --no-startup-id "systemctl reboot" mode "default"
     bindsym Shift+s exec --no-startup-id "systemctl poweroff" mode "default"
     bindsym e exec --no-startup-id "i3-msg exit" mode "default"
