@@ -13,6 +13,9 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# Yarn
+alias y='yarn'
+
 # Remote operations
 alias s='ssh'
 alias r='rsync -avP'
