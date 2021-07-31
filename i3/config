@@ -336,6 +336,3 @@ client.background       #2b2c2b
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 #smart_borders on
-
-
-exec --no-startup-id ~/.config/i3/startup.sh
