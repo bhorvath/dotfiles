@@ -162,22 +162,65 @@ bindsym $mod+Ctrl+x restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Ctrl+z exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# Set shut down, restart and locking features
-bindsym $mod+backslash mode "$mode_system"
-set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
-
-    # exit system mode: "Enter" or "Escape"
+##########################################################################################
+# Config menus
+bindsym $mod+backslash mode "$mode_config"
+set $mode_config (l)ock, (e)environment, (p)ower
+mode "$mode_config" {
+    bindsym l exec --no-startup-id "i3lock -c 002b36" mode "default"
+    bindsym e mode "$mode_environment"
+    bindsym m mode "$mode_mouse"
+    bindsym p mode "$mode_power"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
+set $mode_environment (l)ocation, (t)ime of day, (m)ouse
+mode "$mode_environment" {
+    bindsym l mode "$mode_location"
+    bindsym t mode "$mode_tod"
+    bindsym m mode "$mode_mouse"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_location (w)ork, (h)ome, (p)ortable
+mode "$mode_location" {
+    bindsym w exec --no-startup-id "~/.dotfiles/i3/scripts/env_work.sh" mode "default"
+    bindsym h exec --no-startup-id "~/.dotfiles/i3/scripts/env_home.sh" mode "default"
+    bindsym p exec --no-startup-id "~/.dotfiles/i3/scripts/env_portable.sh" mode "default"
+    bindsym a exec --no-startup-id "urxvt"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_tod (d)ay, (n)ight
+mode "$mode_tod" {
+    bindsym d exec --no-startup-id "~/.dotfiles/i3/scripts/tod.sh day" mode "default"
+    bindsym n exec --no-startup-id "~/.dotfiles/i3/scripts/tod.sh night" mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_mouse (l)eft, (r)ight
+mode "$mode_mouse" {
+    bindsym l exec --no-startup-id "~/.dotfiles/i3/scripts/mouse.sh left" mode "default"
+    bindsym r exec --no-startup-id "~/.dotfiles/i3/scripts/mouse.sh right" mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_power (l)ock, (s)uspend, (r)eboot, (Shift+s)hutdown, (e)xit
+mode "$mode_power" {
+    bindsym l exec --no-startup-id "i3lock -c 002b36" mode "default"
+    bindsym s exec --no-startup-id "i3lock -c 002b36 & systemctl suspend" mode "default"
+    bindsym r exec --no-startup-id "systemctl reboot" mode "default"
+    bindsym Shift+s exec --no-startup-id "systemctl poweroff" mode "default"
+    bindsym e exec --no-startup-id "i3-msg exit" mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+##########################################################################################
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+Shift+r mode "resize"
