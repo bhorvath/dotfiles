@@ -16,19 +16,19 @@ command=uptime | awk -F ': ' '{print $2}'
 interval=5
 
 [ram]
-label= 
-command=~/.config/i3blocks/ram.sh
-instance=mem;free
+label=
+command=~/.config/i3blocks/memory.sh
+instance=mem;used
 interval=10
 
 [swap]
-label= 
-command=~/.config/i3blocks/ram.sh
-instance=swap;free
+label=
+command=~/.config/i3blocks/memory.sh
+instance=swap;used
 interval=10
 
 [disk]
-label= 
+label=
 command=~/.config/i3blocks/disk.sh
 interval=60
 
@@ -37,11 +37,26 @@ command=~/.config/i3blocks/bandwidth.sh
 interval=10
 
 [network]
-label= 
+label=
 command=~/.config/i3blocks/iface.sh
 interval=-1
 
+[battery]
+command=~/.config/i3blocks/battery.sh
+interval=10
+
+[backlight]
+label=☀
+command=~/.config/i3blocks/backlight.sh
+interval=once
+signal=11
+
+[volume]
+command=~/.config/i3blocks/volume.sh
+interval=once
+signal=10
+
 [time]
-label= 
+label=
 command=date '+%Y-%m-%d %H:%M:%S'
 interval=1

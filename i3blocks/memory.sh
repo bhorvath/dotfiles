@@ -8,9 +8,9 @@ SOURCE=$(echo "${INSTANCE}" | awk -F ';' '{print $1}')
 DISPLAY=$(echo "${INSTANCE}" | awk -F ';' '{print $2}')
 
 if [[ "${SOURCE}" = "mem" ]]; then
-  URGENT_VALUE=90
+  URGENT_VALUE=80
 elif [[ "${SOURCE}" = "swap" ]]; then
-  URGENT_VALUE=50
+  URGENT_VALUE=0
 fi
 
 if [[ "${DISPLAY}" = "" ]]; then
@@ -49,6 +49,10 @@ elif [[ "${DISPLAY}" = "total" ]]; then
   MEMINFO="${SOURCE_TOTAL}"
 elif [[ "${DISPLAY}" = "perc" ]]; then
   MEMINFO="${SOURCE_PERC}%"
+fi
+
+if [[ "${MEMINFO}" -le 0 ]]; then
+  exit
 fi
 
 if [[ "${DISPLAY}" != "perc" ]]; then
