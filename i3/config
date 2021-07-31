@@ -59,9 +59,14 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 
 ################################################################################################
 
+### Laptop specific configs
 # Screen brightness controls
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym XF86MonBrightnessUp exec "~/.dotfiles/i3/scripts/backlight.sh up && pkill -RTMIN+11 i3blocks"
+bindsym XF86MonBrightnessDown exec "~/.dotfiles/i3/scripts/backlight.sh down && pkill -RTMIN+11 i3blocks"
+bindsym XF86AudioRaiseVolume exec "amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioLowerVolume exec "amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioMute exec "amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks"
+###
 
 # Applications shortcuts
 bindsym $mod+F3 exec pcmanfm
