@@ -1,5 +1,4 @@
 configuration {
   theme: "solarized";
-  modi: "combi";
-  combi-modi: "window,run";
+  modi: "run,window";
 }
