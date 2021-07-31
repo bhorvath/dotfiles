@@ -16,7 +16,6 @@ font xft:BitstreamVeraSansMono Nerd Font 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminal
 bindsym $mod+a exec urxvt
 
 # change focus
@@ -36,13 +35,12 @@ focus_follows_mouse no
 
 # kill focused window
 bindsym $mod+q kill
-bindsym $mod+braceleft kill
 # xkill window
 bindsym $mod+Shift+q --release exec --no-startup-id xkill
 
 # rofi
 bindsym $mod+semicolon exec --no-startup-id rofi -show run
-bindsym $mod+slash exec --no-startup-id rofi -show ssh
+bindsym $mod+slash exec --no-startup-id rofi -show window
 
 # lock screen
 bindsym $mod+Ctrl+l exec i3lock -B 10 -f --indicator -k --timecolor=CCCCCC --datecolor=CCCCCC
@@ -74,21 +72,21 @@ bindsym $mod+Shift+F3 exec pcmanfm_pkexec
 bindsym $mod+F2 exec mousepad
 
 # Screenshots
-bindsym Print exec --no-startup-id i3-scrot
-bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
-bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
+bindsym Print --release exec --no-startup-id i3-scrot -s # Selection
+bindsym $mod+Print --release exec --no-startup-id i3-scrot -w # Window
+bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot # All screens
 
 # split orientation
 bindsym $mod+BackSpace split toggle
 
 # toggle fullscreen mode for the focused container
-bindsym $mod+Shift+f fullscreen toggle
+bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+f floating toggle
+bindsym $mod+Shift+f floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
