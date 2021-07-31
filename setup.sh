@@ -169,6 +169,10 @@ fi
 mkdir -pv ~/.vim/undo ~/.vim/swp
 
 if [ "$development" = true ]; then
+  # Install nvm
+  echo -e "${bold}Installing nvm...${normal}"
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+
 fi
 
 # Post-setup messages
