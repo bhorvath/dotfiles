@@ -20,4 +20,5 @@ Argument        | Description
 `--bash`        | if using bash as your preferred shell
 `--development` | install dependencies for development (RVM, etc)
 `--gui`         | sets up configuration for X
+`--laptop`         | sets up laptop specific configurations
 `--help`        | displays help

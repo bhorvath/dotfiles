@@ -8,6 +8,7 @@ function _usage()
   echo "    -b, --bash            Use bash"
   echo "    -d, --development     Setup for development"
   echo "    -g, --gui             Setup for GUI"
+  echo "    -l, --laptop          Setup for laptop"
   echo "    -h, --help            Show this message"
 }
 
@@ -27,6 +28,7 @@ function _parse_options()
       "--bash") set -- "$@" "-b" ;;
       "--development") set -- "$@" "-d" ;;
       "--gui") set -- "$@" "-g" ;;
+      "--laptop") set -- "$@" "-l" ;;
       "--help") set -- "$@" "-h" ;;
       "--"*) _unrecognised_option {$arg}; exit 2;;
       *) set -- "$@" "$arg" ;;
@@ -35,13 +37,14 @@ function _parse_options()
 
   # Parse short options
   OPTIND=1
-  while getopts "zbdgh" opt
+  while getopts "zbdglh" opt
   do
     case "$opt" in
       "z") zsh=true ;;
       "b") bash=true ;;
       "d") development=true ;;
       "g") gui=true ;;
+      "l") laptop=true ;;
       "h") _usage; exit 0 ;;
     esac
   done
@@ -103,6 +106,10 @@ fi
 
 if [ "$gui" = true ]; then
   dependencies+=" i3-gaps i3blocks rofi"
+fi
+
+if [ "$laptop" = true ]; then
+  dependencies+=" xbacklight"
 fi
 
 bold=`tput setaf 7`
