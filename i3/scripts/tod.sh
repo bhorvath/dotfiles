@@ -12,3 +12,4 @@ case "$1" in
 esac
 
 ddcutil -d 1 setvcp 10 $brightness
+ddcutil -d 2 setvcp 10 $brightness
