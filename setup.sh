@@ -77,7 +77,7 @@ gui_config_dirs="i3 i3blocks rofi"
 gui_dotfiles="Xresources"
 dotfiles="vimrc tmux.conf dir_colors gitconfig aliases docker_aliases git_aliases"
 dotfiles_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-dependencies="tmux vim git fzf"
+dependencies="tmux vim git fzf awk"
 backup_dir=$dotfiles_dir/backup
 vundle_dir=~/.vim/bundle/Vundle.vim
 development=false
@@ -105,7 +105,7 @@ if [ "$development" = true ]; then
 fi
 
 if [ "$gui" = true ]; then
-  dependencies+=" i3 i3blocks rofi rxvt-unicode xsel solaar mousepad pcmanfm ddcutil"
+  dependencies+=" i3 i3blocks rofi rxvt-unicode xsel solaar mousepad pcmanfm ddcutil autorandr"
 fi
 
 if [ "$laptop" = true ]; then
