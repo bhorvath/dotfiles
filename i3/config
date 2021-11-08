@@ -105,16 +105,18 @@ set $ws5 5: Comms
 set $ws6 6:★ Misc
 
 # Workspace locations
-set $left eDP1
-set $centre eDP1
-set $right eDP1
+set $home_left DP1
+set $home_right DP3
+set $work_left DP1-1
+set $work_right DP1-2
+set $internal eDP1
 
-workspace 1 output $left
-workspace 2 output $left
-workspace 3 output $centre
-workspace 4 output $centre
-workspace 5 output $right
-workspace 6 output $right
+workspace "$ws1" output $home_left $work_left $internal
+workspace "$ws2" output $home_left $work_left $internal
+workspace "$ws3" output $home_right $work_right $internal
+workspace "$ws4" output $home_right $work_right $internal
+workspace "$ws5" output $internal
+workspace "$ws6" output $internal
 
 # switch to workspace
 bindsym $mod+u workspace $ws1
