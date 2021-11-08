@@ -69,7 +69,6 @@ bindsym XF86AudioMute exec "amixer -q -D pulse sset Master toggle && pkill -RTMI
 
 # Applications shortcuts
 bindsym $mod+F3 exec pcmanfm
-bindsym $mod+Shift+F3 exec pcmanfm_pkexec
 bindsym $mod+F2 exec mousepad
 
 # Screenshots
