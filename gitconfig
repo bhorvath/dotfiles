@@ -22,6 +22,7 @@ d = diff
 r = reset HEAD
 p = pull
 pp = push
+reset-branch = !git reset --hard `git remote show`/`git branch --show-current`
 f = fetch
 b = branch
 rb = rebase
