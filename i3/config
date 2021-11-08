@@ -325,6 +325,9 @@ client.urgent           #cb4b16 #fdf6e3 #1abc9c #268bd2
 client.placeholder      #000000 #0c0c0c #ffffff #000000 
 client.background       #2b2c2b
 
+# Set background colour to black
+exec --no-startup-id xsetroot -solid "#000000"
+
 #############################
 ### settings for i3-gaps: ###
 #############################
