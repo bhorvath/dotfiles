@@ -137,6 +137,7 @@ bindsym $mod+Shift+bracketright move container to workspace $ws6; workspace $ws6
 # Open specific applications in floating mode
 for_window [class="org.remmina.Remmina"] floating enable
 for_window [class="XCalc"] floating enable border pixel 2
+for_window [class="Pavucontrol"] floating enable border pixel 2
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
