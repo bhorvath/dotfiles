@@ -105,16 +105,15 @@ set $ws5 5: Comms
 set $ws6 6:★ Misc
 
 # Workspace locations
-set $home_left DP1
-set $home_right DP3
+set $home DP1
 set $work_left DP1-1
 set $work_right DP1-2
 set $internal eDP1
 
-workspace "$ws1" output $home_left $work_left $internal
-workspace "$ws2" output $home_left $work_left $internal
-workspace "$ws3" output $home_right $work_right $internal
-workspace "$ws4" output $home_right $work_right $internal
+workspace "$ws1" output $home $work_left $internal
+workspace "$ws2" output $home $work_left $internal
+workspace "$ws3" output $home $work_right $internal
+workspace "$ws4" output $home $work_right $internal
 workspace "$ws5" output $internal
 workspace "$ws6" output $internal
 
@@ -295,7 +294,7 @@ bar {
   status_command i3blocks
   position top
   strip_workspace_numbers yes
-  tray_output $left
+  #tray_output $left
 
   # Disable moving between workspaces with scroll wheel
   bindsym button4 nop
