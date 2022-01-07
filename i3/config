@@ -110,10 +110,10 @@ set $work_left DP1-1
 set $work_right DP1-2
 set $internal eDP1
 
-workspace "$ws1" output $home $work_left $internal
-workspace "$ws2" output $home $work_left $internal
-workspace "$ws3" output $home $work_right $internal
-workspace "$ws4" output $home $work_right $internal
+workspace "$ws1" output $work_left $home $internal
+workspace "$ws2" output $work_left $home $internal
+workspace "$ws3" output $work_right $home $internal
+workspace "$ws4" output $work_right $home $internal
 workspace "$ws5" output $internal
 workspace "$ws6" output $internal
 
