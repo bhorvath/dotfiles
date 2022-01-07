@@ -60,7 +60,7 @@ Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
 ! Fade text when focus is lost
-*fading:                          30
+!*fading:                          30
 
 Xcursor.theme: xcursor-breeze
 Xcursor.size:                     0
