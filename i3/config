@@ -239,7 +239,7 @@ mode "$mode_confirm_exit" {
 ##########################################################################################
 
 # Resize window (you can also use the mouse for that)
-bindsym $mod+Shift+r mode "resize"
+bindsym $mod+r mode "resize"
 mode "resize" {
   # Resize by 10 pixels
   bindsym h resize shrink width 10 px or 10 ppt
