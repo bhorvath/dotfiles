@@ -160,9 +160,13 @@ export PATH="$PATH:$HOME/go/bin"
 # Add user bins to PATH
 PATH=$PATH:$HOME/.local/bin
 
-# Only start tmux if not an SSH connection and not in VSCode
-if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" = "" ] && [ "$VISUAL_STUDIO" != true ]; then
-  exec tmux
+# Only start tmux if
+# - not already started
+# - not a tty terminal
+# - not an SSH connection
+# - not in VSCode
+if [[ -z "$TMUX" ]] && [[ ! $(tty) =~ "/dev/tty[0-9]+" ]] && [ "$SSH_CONNECTION" = "" ] && [ "$VISUAL_STUDIO" != true ]; then
+ exec tmux
 fi
 
 # Set up ssh-agent on local terminals only
