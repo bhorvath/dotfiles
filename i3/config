@@ -68,8 +68,9 @@ bindsym XF86AudioMute exec "amixer -q -D pulse sset Master toggle && pkill -RTMI
 ###
 
 # Applications shortcuts
-bindsym $mod+F3 exec pcmanfm
 bindsym $mod+F2 exec mousepad
+bindsym $mod+F3 exec pcmanfm
+bindsym $mod+F4 exec "~/.dotfiles/i3/scripts/toggle.sh pavucontrol"
 
 # split orientation
 bindsym $mod+BackSpace split toggle
