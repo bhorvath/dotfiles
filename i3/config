@@ -338,3 +338,4 @@ smart_borders on
 
 exec_always nm-applet
 exec autorandr --change
+exec "~/.dotfiles/i3/scripts/common.sh"
