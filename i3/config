@@ -99,11 +99,12 @@ bindsym $mod+minus scratchpad show
 
 # Workspace names
 set $ws1 1: Web
-set $ws2 2: Term
-set $ws3 3: Code
-set $ws4 4: Code²
+set $ws2 2: Code
+set $ws3 3: Term
+set $ws4 4:★ Misc
 set $ws5 5: Comms
 set $ws6 6:★ Misc
+set $ws7 7:★ Unused
 
 # Workspace locations
 set $home DP1
@@ -111,8 +112,8 @@ set $work_left DP1-1
 set $work_right DP1-2
 set $internal eDP1
 
-workspace "$ws1" output $work_left $home $internal
-workspace "$ws2" output $work_left $home $internal
+workspace "$ws1" output $work_right $home $internal
+workspace "$ws2" output $work_right $home $internal
 workspace "$ws3" output $work_right $home $internal
 workspace "$ws4" output $work_right $home $internal
 workspace "$ws5" output $internal
