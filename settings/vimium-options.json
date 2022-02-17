@@ -13,7 +13,7 @@
   "filterLinkHints": false,
   "waitForEnterForFilteredHints": true,
   "hideHud": false,
-  "keyMappings": "unmap d\nunmap u\nmap <c-d> scrollPageDown\nmap <c-u> scrollPageUp\nmap d removeTab\nmap u restoreTab",
+  "keyMappings": "unmap d\nunmap u\nmap <c-d> scrollPageDown\nmap <c-u> scrollPageUp\nmap d removeTab\nmap u restoreTab\nmap < moveTabLeft\nmap > moveTabRight",
   "linkHintCharacters": "jkluio",
   "linkHintNumbers": "0123456789",
   "newTabUrl": "about:newtab",
