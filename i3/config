@@ -308,7 +308,7 @@ bar {
 
 # Theme colors
 # class           border          backgr.         text            indic.          child_border
-client.focused    $term_color0    $term_color4    $term_color7    $term_color3 $term_color4
+client.focused    $term_color0    $term_color4    $term_color7    $term_color3 #ffcd00
 
 # Set background colour to black
 exec --no-startup-id xsetroot -solid "#000000"
