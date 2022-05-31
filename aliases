@@ -23,3 +23,6 @@ alias r='rsync -avP'
 # Disk space
 alias fs='df -h'
 alias us='du -h --max-depth=1'
+
+# k9s
+alias k='k9s'
