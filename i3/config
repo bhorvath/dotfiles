@@ -100,11 +100,8 @@ bindsym $mod+minus scratchpad show
 # Workspace names
 set $ws1 1: Web
 set $ws2 2: Code
-set $ws3 3: Term
-set $ws4 4:★ Misc
-set $ws5 5: Comms
-set $ws6 6:★ Misc
-set $ws7 7:★ Unused
+set $ws3 3:★ Misc
+set $ws4 4: Comms
 
 # Workspace locations
 set $home DP1
@@ -116,24 +113,18 @@ workspace "$ws1" output $work_right $home $internal
 workspace "$ws2" output $work_right $home $internal
 workspace "$ws3" output $work_right $home $internal
 workspace "$ws4" output $work_right $home $internal
-workspace "$ws5" output $internal
-workspace "$ws6" output $internal
 
 # switch to workspace
 bindsym $mod+u workspace $ws1
 bindsym $mod+i workspace $ws2
 bindsym $mod+o workspace $ws3
 bindsym $mod+p workspace $ws4
-bindsym $mod+bracketleft workspace $ws5
-bindsym $mod+bracketright workspace $ws6
 
 # Move to workspace with focused container
 bindsym $mod+Shift+u move container to workspace $ws1; workspace $ws1
 bindsym $mod+Shift+i move container to workspace $ws2; workspace $ws2
 bindsym $mod+Shift+o move container to workspace $ws3; workspace $ws3
 bindsym $mod+Shift+p move container to workspace $ws4; workspace $ws4
-bindsym $mod+Shift+bracketleft move container to workspace $ws5; workspace $ws5
-bindsym $mod+Shift+bracketright move container to workspace $ws6; workspace $ws6
 
 # Open specific applications in floating mode
 for_window [class="org.remmina.Remmina"] floating enable
