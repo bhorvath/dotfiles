@@ -318,7 +318,7 @@ exec --no-startup-id xsetroot -solid "#000000"
 #############################
 
 # Set inner/outer gaps
-gaps inner 7
+gaps inner 10
 gaps outer 0
 
 # Smart gaps (gaps used if only more than one container on the workspace)
