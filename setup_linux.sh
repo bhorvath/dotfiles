@@ -2,7 +2,7 @@
 
 function _usage()
 {
-  echo "Usage: setup.sh [OPTION]..."
+  echo "Usage: setup_linux.sh [OPTION]..."
   echo "Options:"
   echo "    -z, --zsh             Use zsh"
   echo "    -b, --bash            Use bash"

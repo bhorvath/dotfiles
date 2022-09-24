@@ -128,8 +128,10 @@ rprompt_string() {
   echo $rprompt
 }
 
+# Colour ls
+export CLICOLOR=1
 
-# Color man pages
+# Colour man pages
 export LESS_TERMCAP_mb=$'\E[01;32m'
 export LESS_TERMCAP_md=$'\E[01;32m'
 export LESS_TERMCAP_me=$'\E[0m'
