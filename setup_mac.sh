@@ -145,6 +145,7 @@ cask_packages=(
   docker
   iterm2
   slack
+  thunderbird
   visual-studio-code
 )
 
