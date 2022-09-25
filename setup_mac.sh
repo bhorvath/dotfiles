@@ -73,7 +73,7 @@ function _brew()
     brew update
   fi
 
-  cho -e "${bold}Installing packages via Homebrew...${normal}"
+  echo -e "${bold}Installing packages via Homebrew...${normal}"
   brew install "${packages[@]}"
   brew install --cask "${cask_packages[@]}"
 }
@@ -144,6 +144,7 @@ packages=(
 
 cask_packages=(
   authy
+  docker
   iterm2
   slack
   visual-studio-code
