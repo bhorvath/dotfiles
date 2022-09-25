@@ -136,10 +136,8 @@ dotfiles_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 backup_dir=$dotfiles_dir/backups
 
 packages=(
-  awk
   fzf
   tmux
-  vim
 )
 
 cask_packages=(
