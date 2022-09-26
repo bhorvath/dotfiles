@@ -1,0 +1,44 @@
+# Focus window
+cmd + ctrl - h : yabai -m window --focus west
+cmd + ctrl - j : yabai -m window --focus south
+cmd + ctrl - k : yabai -m window --focus north
+cmd + ctrl - l : yabai -m window --focus east
+
+# Move window
+#shift + cmd + alt + ctrl - h : yabai -m window --swap west
+#shift + cmd + alt + ctrl - j : yabai -m window --swap south
+#shift + cmd + alt + ctrl - k : yabai -m window --swap north
+#shift + cmd + alt + ctrl - l : yabai -m window --swap east
+
+shift + cmd + ctrl - h : yabai -m window --warp west
+shift + cmd + ctrl - j : yabai -m window --warp south
+shift + cmd + ctrl - k : yabai -m window --warp north
+shift + cmd + ctrl - l : yabai -m window --warp east
+
+# Move window to space
+shift + cmd + ctrl - u : yabai -m window --space 1
+shift + cmd + ctrl - i : yabai -m window --space 2
+shift + cmd + ctrl - o : yabai -m window --space 3
+shift + cmd + ctrl - p : yabai -m window --space 4
+
+# Resize window
+alt + cmd + ctrl - h: yabai -m window --resize left:-200:0 2> /dev/null || yabai -m window --resize right:-200:0
+alt + cmd + ctrl - l: yabai -m window --resize right:200:0 2> /dev/null || yabai -m window --resize left:200:0
+alt + cmd + ctrl - k: yabai -m window --resize top:0:-200 2> /dev/null || yabai -m window --resize bottom:0:-200
+alt + cmd + ctrl - j: yabai -m window --resize bottom:0:200 2> /dev/null || yabai -m window --resize top:0:200
+
+# Change split direction
+cmd + ctrl - backspace: yabai -m window --toggle split
+
+#shift + cmd + alt + ctrl - u : yabai -m window --space 1; ~/.config/skhd/focus-space.sh 1
+#shift + cmd + alt + ctrl - i : yabai -m window --space 2; ~/.config/skhd/focus-space.sh 2
+#shift + cmd + alt + ctrl - o : yabai -m window --space 3; ~/.config/skhd/focus-space.sh 3
+#shift + cmd + alt + ctrl - p : yabai -m window --space 4; ~/.config/skhd/focus-space.sh 4
+
+# Resize window
+# https://github.com/koekeishiya/yabai/issues/200
+
+# Application shortcuts
+cmd + ctrl - a : /Applications/iTerm\ 2.app/Contents/MacOS/iTerm2
+cmd + ctrl - s : open -b com.apple.systempreferences
+

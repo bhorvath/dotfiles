@@ -94,6 +94,13 @@ function _yabai()
   brew services start yabai
 }
 
+function _skhd()
+{
+  echo -e "${bold}Setting up skhd...${normal}"
+  brew install koekeishiya/formulae/skhd
+  brew services start skhd
+}
+
 function _zsh()
 {
   echo -e "${bold}Installing zsh plugins...${normal}"
@@ -149,7 +156,7 @@ function _cleanup()
 shared_dotfiles="aliases docker_aliases git_aliases gitconfig tmux.conf vimrc zshrc"
 mac_dotfiles="zprofile"
 dotfiles_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-config_dirs="yabai"
+config_dirs="yabai skhd"
 backup_dir=$dotfiles_dir/backups
 
 packages=(
@@ -174,6 +181,7 @@ _backup
 _symlinks
 _brew
 _yabai
+_skhd
 _zsh
 _vim
 _nvm
