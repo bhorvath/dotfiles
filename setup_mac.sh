@@ -47,6 +47,12 @@ function _backup()
       mv -v ~/.$file $backup_dir/$now
     fi
   done
+  for dir in $config_dirs; do
+    if [ -d ~/.config/$dir ]; then
+      mv -v ~/.config/$dir $backup_dir/$now
+    fi
+  done
+
 }
 
 function _symlinks()
@@ -57,6 +63,9 @@ function _symlinks()
   done
   for file in $mac_dotfiles; do
     ln -sfv $dotfiles_dir/mac/$file ~/.$file
+  done
+  for dir in $config_dirs; do
+    ln -sfv $dotfiles_dir/mac/$dir ~/.config
   done
 }
 
@@ -76,6 +85,13 @@ function _brew()
   echo -e "${bold}Installing packages via Homebrew...${normal}"
   brew install "${packages[@]}"
   brew install --cask "${cask_packages[@]}"
+}
+
+function _yabai()
+{
+  echo -e "${bold}Setting up yabai...${normal}"
+  brew install koekeishiya/formulae/yabai
+  brew services start yabai
 }
 
 function _zsh()
@@ -133,6 +149,7 @@ function _cleanup()
 shared_dotfiles="aliases docker_aliases git_aliases gitconfig tmux.conf vimrc zshrc"
 mac_dotfiles="zprofile"
 dotfiles_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+config_dirs="yabai"
 backup_dir=$dotfiles_dir/backups
 
 packages=(
@@ -156,6 +173,7 @@ _parse_options $@
 _backup
 _symlinks
 _brew
+_yabai
 _zsh
 _vim
 _nvm
