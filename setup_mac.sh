@@ -62,7 +62,7 @@ function _symlinks()
 
 function _brew()
 {
-  # brew -v > /dev/null
+  brew -v > /dev/null
   if [ $? != 0 ]; then
     echo -e "${bold}Installing Homebrew...${normal}"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
