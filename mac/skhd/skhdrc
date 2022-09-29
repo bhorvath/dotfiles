@@ -39,6 +39,6 @@ cmd + ctrl - backspace: yabai -m window --toggle split
 # https://github.com/koekeishiya/yabai/issues/200
 
 # Application shortcuts
-cmd + ctrl - a : /Applications/iTerm.app/Contents/MacOS/iTerm2
+cmd + ctrl - a : osascript ~/.config/skhd/iterm.scpt
 cmd + ctrl - s : open -b com.apple.systempreferences
 
