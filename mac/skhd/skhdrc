@@ -41,4 +41,4 @@ cmd + ctrl - backspace: yabai -m window --toggle split
 # Application shortcuts
 cmd + ctrl - a : osascript ~/.config/skhd/iterm.scpt
 cmd + ctrl - s : open -b com.apple.systempreferences
-
+cmd + ctrl - f : osascript ~/.config/skhd/safari.scpt
