@@ -12,4 +12,4 @@ keystroke=("u" "i" "o" "p")
 #   yabai -m display --focus ${tgt_display}
 # fi
 
-osascript -e "tell application \"System Events\" to keystroke \"${keystroke[${target_space} - 1]}\" using {command down, option down, control down}"
+osascript -e "tell application \"System Events\" to keystroke \"${keystroke[${target_space} - 1]}\" using {command down, control down}"

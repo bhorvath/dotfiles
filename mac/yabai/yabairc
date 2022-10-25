@@ -1,5 +1,5 @@
 # Set layout to binary space partitioning
-yabai -m config layout bsp
+yabai -m config layout float
 
 # Padding around windows
 #yabai -m config top_padding    5

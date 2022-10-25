@@ -161,6 +161,7 @@ backup_dir=$dotfiles_dir/backups
 
 packages=(
   fzf
+  jq
   tmux
 )
 
