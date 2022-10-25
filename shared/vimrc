@@ -84,7 +84,7 @@ try
 endtry
 
 " Don't overwrite primary buffer on yank, use clipboard
-set clipboard=unnamedplus
+set clipboard=unnamed
 " F6 to paste
 set pastetoggle=<F6>
 
