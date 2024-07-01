@@ -10,12 +10,10 @@ shift + cmd + ctrl - 0x2B : ~/.config/skhd/position.sh 1
 shift + cmd + ctrl - 0x2F : ~/.config/skhd/position.sh 2
 
 # Resize window
-shift + cmd + ctrl - h : ~/.config/skhd/resize.sh --grow --left
-shift + alt + cmd + ctrl - h : ~/.config/skhd/resize.sh --shrink --right
+shift + cmd + ctrl - h : ~/.config/skhd/resize.sh --shrink --right
 shift + cmd + ctrl - j : ~/.config/skhd/resize.sh --down
 shift + cmd + ctrl - k : ~/.config/skhd/resize.sh --up
 shift + cmd + ctrl - l : ~/.config/skhd/resize.sh --grow --right
-shift + alt + cmd + ctrl - l : ~/.config/skhd/resize.sh --shrink --left
 
 # Move window to space
 shift + cmd + ctrl - u : yabai -m window --space 1

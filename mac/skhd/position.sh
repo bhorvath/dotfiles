@@ -23,8 +23,8 @@ function _setup {
 function _position {
   left_offset=0
   right_offset=0
-  screen_width=`yabai -m query --displays | jq ".[0].frame.w"`
-  screen_height=`yabai -m query --displays | jq ".[0].frame.h"`
+  screen_width=`yabai -m query --displays | jq ".[0].frame.w | floor"`
+  screen_height=`yabai -m query --displays | jq ".[0].frame.h | floor"`
   column_width=$(($screen_width/$columns))
 
   # Work out offsets based on position and padding

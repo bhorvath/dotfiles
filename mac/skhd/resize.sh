@@ -61,12 +61,12 @@ function _setup_vertical {
   # TODO: Work out programmatically
   #37: laptop screen
   #25: external monitor
-  menu_bar_height=37
+  menu_bar_height=25
 
-  screen_height=`yabai -m query --displays | jq ".[0].frame.h"`
+  screen_height=`yabai -m query --displays | jq ".[0].frame.h | floor"`
   row_height=$((($screen_height-$menu_bar_height)/$rows))
-  window_y=`yabai -m query --windows | jq -r "nth(index(map(select(.\"has-focus\" == true)))) | .frame.y"`
-  window_height=`yabai -m query --windows | jq -r "nth(index(map(select(.\"has-focus\" == true)))) | .frame.h"`
+  window_y=`yabai -m query --windows | jq -r "nth(index(map(select(.\"has-focus\" == true)))) | .frame.y | floor"`
+  window_height=`yabai -m query --windows | jq -r "nth(index(map(select(.\"has-focus\" == true)))) | .frame.h | floor"`
 }
 
 function _up {
@@ -115,14 +115,14 @@ function _horizontal_resize {
 }
 
 function _setup_horizontal {
-  columns=6
+  columns=3
   padding=6
 
-  screen_width=`yabai -m query --displays | jq ".[0].frame.w"`
-  screen_height=`yabai -m query --displays | jq ".[0].frame.h"`
+  screen_width=`yabai -m query --displays | jq ".[0].frame.w | floor"`
+  screen_height=`yabai -m query --displays | jq ".[0].frame.h | floor"`
   column_width=$(($screen_width/$columns))
-  window_x=`yabai -m query --windows | jq -r "nth(index(map(select(.\"has-focus\" == true)))) | .frame.x"`
-  window_width=`yabai -m query --windows | jq -r "nth(index(map(select(.\"has-focus\" == true)))) | .frame.w"`
+  window_x=`yabai -m query --windows | jq -r "nth(index(map(select(.\"has-focus\" == true)))) | .frame.x | floor"`
+  window_width=`yabai -m query --windows | jq -r "nth(index(map(select(.\"has-focus\" == true)))) | .frame.w | floor"`
 }
 
 function _grow {
