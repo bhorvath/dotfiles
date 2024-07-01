@@ -27,6 +27,7 @@ f = fetch
 b = branch
 rb = rebase
 cc = checkout
+cp = cherry-pick
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 [pull]
