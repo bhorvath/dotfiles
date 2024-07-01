@@ -7,17 +7,19 @@ Dotfiles for setting up a new install.
 Clone the repo.
 
 ```
-git clone git@github.com:bhorvath/dotfiles.git ~/.dotfiles
+git clone git@github.com:bhorvath/dotfiles.git ~/git/dotfiles
 ```
 
 For macOS:
+
 ```
-~/.dotfiles/setup_mac.sh
+~/git/dotfiles/setup_mac.sh
 ```
 
-For Linux (not currently maintained):
+For Linux:
+
 ```
-~/.dotfiles/setup_linux.sh
+~/git/dotfiles/setup_linux.sh
 ```
 
 ## Arguments
@@ -26,7 +28,6 @@ You can pass arguments to `setup_linux.sh` to modify what is installed.
 
 Argument        | Description
 --------        | -----------
-`--zsh`         | if using zsh as your preferred shell
 `--bash`        | if using bash as your preferred shell
 `--development` | install dependencies for development (nvm, etc)
 `--gui`         | sets up configuration for X
