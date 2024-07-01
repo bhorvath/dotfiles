@@ -168,7 +168,7 @@ PATH=$PATH:$HOME/.local/bin
 # - not an SSH connection
 # - not in VSCode
 if [[ -z "$TMUX" ]] && [[ ! $(tty) =~ "/dev/tty[0-9]+" ]] && [ "$SSH_CONNECTION" = "" ] && [ "$VISUAL_STUDIO" != true ]; then
- exec tmux
+  exec tmux
 fi
 
 # Set up ssh-agent on local terminals only
@@ -185,3 +185,4 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
