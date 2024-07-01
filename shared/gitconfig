@@ -3,6 +3,7 @@
 	email = 5924171+bhorvath@users.noreply.github.com
 [core]
   editor = vim
+	excludesfile = /Users/bhorvath/.gitignore_global
 [init]
   defaultBranch = main
 [push]
