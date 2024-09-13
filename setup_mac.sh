@@ -47,6 +47,9 @@ function _backup()
       mv -v ~/.$file $backup_dir/$now
     fi
   done
+  if [ ! -d ~/.config ]; then
+    mkdir ~/.config
+  fi
   for dir in $config_dirs; do
     if [ -d ~/.config/$dir ]; then
       mv -v ~/.config/$dir $backup_dir/$now
