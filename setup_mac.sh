@@ -166,11 +166,15 @@ packages=(
 )
 
 cask_packages=(
-  authy
+  aldente
   docker
+  fork
   iterm2
+  monitorcontrol
+  obsidian
+  postman
+  raycast
   slack
-  thunderbird
   visual-studio-code
 )
 
