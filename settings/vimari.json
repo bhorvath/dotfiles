@@ -1,12 +1,12 @@
 {
-  "excludedUrls": "https?://app.sketchup.com/*",
+  "excludedUrls": "",
   "linkHintCharacters": "jkluio",
   "detectByCursorStyle": false,
-  "scrollSize": 60,
+  "smoothScroll": true,
+  "scrollDuration": 25,
+  "scrollSize": 100,
   "openTabUrl": "about:blank",
   "modifier": "",
-  "smoothScroll": false,
-  "scrollDuration": 25,
   "transparentBindings": true,
   "bindings": {
       "hintToggle": "f",
@@ -23,8 +23,8 @@
       "goBack": "shift+h",
       "goForward": "shift+l",
       "reload": "r",
-      "tabForward": "shift+j",
-      "tabBack": "shift+k",
+      "tabForward": "shift+k",
+      "tabBack": "shift+j",
       "closeTab": "d",
       "openTab": "t"
   }
