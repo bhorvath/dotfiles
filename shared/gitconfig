@@ -20,6 +20,7 @@ ca = commit --amend
 cam = commit --amend -m
 acam = !git add -A && git commit --amend -m
 d = diff
+dc = diff --cached
 r = reset HEAD
 p = pull
 pp = push
