@@ -22,6 +22,5 @@ shift + cmd + ctrl - o : yabai -m window --space 3
 shift + cmd + ctrl - p : yabai -m window --space 4
 
 # Application shortcuts
-cmd + ctrl - a : osascript ~/.config/skhd/iterm.scpt
-cmd + ctrl - s : open -b com.apple.systempreferences
-cmd + ctrl - f : osascript ~/.config/skhd/safari.scpt
+hyper - a : osascript ~/.config/skhd/iterm.scpt
+hyper - s : open /System/Applications/Utilities/Screenshot.app
