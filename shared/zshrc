@@ -166,9 +166,13 @@ PATH=$PATH:$HOME/.local/bin
 # - not already started
 # - not a tty terminal
 # - not an SSH connection
-# - not in VSCode
-if [[ -z "$TMUX" ]] && [[ ! $(tty) =~ "/dev/tty[0-9]+" ]] && [ "$SSH_CONNECTION" = "" ] && [ "$VISUAL_STUDIO" != true ]; then
-  exec tmux
+# If running in VSCode, and a workspace name is set, start or restore a named session
+if [[ -z "$TMUX" ]] && [[ ! $(tty) =~ "/dev/tty[0-9]+" ]] && [ "$SSH_CONNECTION" = "" ]; then
+  if [[ -n "$WORKSPACE_NAME" ]]; then
+    exec tmux new-session -A -s $WORKSPACE_NAME
+  else
+    exec tmux
+  fi
 fi
 
 # Set up ssh-agent on local terminals only

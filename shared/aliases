@@ -26,3 +26,6 @@ alias us='du -h --max-depth=1'
 
 # k9s
 alias k='k9s'
+
+# aws-vault
+alias av='aws-vault'
