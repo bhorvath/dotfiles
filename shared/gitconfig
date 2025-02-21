@@ -3,7 +3,7 @@
 	email = 5924171+bhorvath@users.noreply.github.com
 [core]
   editor = vim
-	excludesfile = /Users/bhorvath/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [init]
   defaultBranch = main
 [push]
@@ -30,7 +30,5 @@ b = branch
 rb = rebase
 cc = checkout
 cp = cherry-pick
-[url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
 [pull]
 	ff = only
