@@ -207,7 +207,7 @@ bash_dotfiles="bashrc bash_profile"
 gui_config_dirs="i3 i3blocks rofi"
 gui_dotfiles="Xresources"
 dotfiles_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-dependencies="tmux vim git fzf awk"
+dependencies="tmux vim git fzf gawk"
 backup_dir=$dotfiles_dir/backup
 vundle_dir=~/.vim/bundle/Vundle.vim
 
