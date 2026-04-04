@@ -165,7 +165,8 @@ PATH=$PATH:$HOME/.local/bin
 # Only start tmux if
 # - not already started
 # - not a tty terminal
-if [[ -z "$TMUX" ]] && [[ ! $(tty) =~ "/dev/tty[0-9]+" ]]; then
+# - not vscode resolving environment
+if [[ -z "$TMUX" ]] && [[ ! $(tty) =~ "/dev/tty[0-9]+" ]] && [[ -z "$VSCODE_RESOLVING_ENVIRONMENT" ]]; then
   # If running in VSCode, and a workspace name is set, start or restore a named session
   if [[ -n "$VSCODE_WORKSPACE_NAME" ]]; then
     exec tmux new-session -A -s $VSCODE_WORKSPACE_NAME
