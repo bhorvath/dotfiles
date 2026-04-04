@@ -167,8 +167,8 @@ PATH=$PATH:$HOME/.local/bin
 # - not a tty terminal
 if [[ -z "$TMUX" ]] && [[ ! $(tty) =~ "/dev/tty[0-9]+" ]]; then
   # If running in VSCode, and a workspace name is set, start or restore a named session
-  if [[ -n "$WORKSPACE_NAME" ]]; then
-    exec tmux new-session -A -s $WORKSPACE_NAME
+  if [[ -n "$VSCODE_WORKSPACE_NAME" ]]; then
+    exec tmux new-session -A -s $VSCODE_WORKSPACE_NAME
   else
     # Set the name of the session based on the type of connection
     # - SSH: ssh
