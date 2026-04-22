@@ -166,18 +166,21 @@ packages=(
   fzf
   jq
   tmux
+  jesseduffield/lazygit/lazygit
+  jesseduffield/lazydocker/lazydocker
 )
 
 cask_packages=(
   aldente
-  docker
+  bruno
   fork
   iterm2
   monitorcontrol
   obsidian
-  postman
+  orbstack
   raycast
   slack
+  thunderbird
   visual-studio-code
 )
 
