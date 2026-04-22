@@ -13,8 +13,9 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-# Yarn
+# Development
 alias y='yarn'
+alias p='pnpm'
 
 # Remote operations
 alias s='ssh'
@@ -29,3 +30,7 @@ alias k='k9s'
 
 # aws-vault
 alias av='aws-vault'
+
+# lazy*
+alias lzg='lazygit'
+alias lzd='lazydocker'
